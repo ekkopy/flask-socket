@@ -11,7 +11,7 @@ class Student
     /**
      * @Id
      * @GeneratedValue
-     * @Column(type="integer")
+     * @Column(type="integer", name="id")
      */
     private $_id;
 
