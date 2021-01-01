@@ -2,6 +2,9 @@
 
 namespace Src\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 /**
  * @Entity
  * 
@@ -9,6 +12,8 @@ namespace Src\Entity;
 class Student
 {
     /**
+     * Student id
+     * 
      * @Id
      * @GeneratedValue
      * @Column(type="integer")
@@ -16,9 +21,23 @@ class Student
     private $_id;
 
     /**
+     * Student name
+     * 
      * @Column(type="string")
      */
     private $_name;
+
+    /** 
+     * Student's contacts
+     * 
+     * @OneToMany(targetEntity="Contact", mappedBy="_student")
+     */
+    private $_contacts;
+
+    public function __construct()
+    {
+        $this->_contacts = new ArrayCollection();
+    }
 
     public function getId(): int
     {
@@ -35,4 +54,18 @@ class Student
         $this->_name = $name;
         return $this;
     }
+
+    public function addContact(Contact $cellphone): self
+    {
+        $this->_contacts->add($cellphone);
+        $cellphone->setStudent($this);
+
+        return $this;
+    }
+
+    public function getContact(): Collection
+    {
+        return $this->_contacts;
+    }
+
 }
