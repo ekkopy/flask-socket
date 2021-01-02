@@ -26,4 +26,7 @@ composer.phar
 !.vscode/extensions.json
 *.code-workspace
 
+# idea
+.idea
+
 # End of https://www.toptal.com/developers/gitignore/api/composer,vscode,database

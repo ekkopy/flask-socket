@@ -33,14 +33,14 @@ class Contact
      * 
      * @Id
      * @GeneratedValue
-     * @Column(type="integer")
+     * @Column(type="integer", name="id")
      */
     private $_id;
 
     /**
      * Student's cellphone
      * 
-     * @Column(type="string")
+     * @Column(type="string", name="cellphone")
      */
     private $_cellphone;
 
@@ -85,7 +85,7 @@ class Contact
     }
 
     /**
-     * SRelation with Student's table
+     * Relation with Student's table
      * 
      * @return Student $_student
      */

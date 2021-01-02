@@ -16,21 +16,25 @@ class Student
      * 
      * @Id
      * @GeneratedValue
-     * @Column(type="integer")
+     * @Column(type="integer", name="id")
      */
     private $_id;
 
     /**
      * Student name
      * 
-     * @Column(type="string")
+     * @Column(type="string", name="name")
      */
     private $_name;
 
     /** 
      * Student's contacts
      * 
-     * @OneToMany(targetEntity="Contact", mappedBy="_student")
+     * @OneToMany(
+     *            targetEntity="Contact", 
+     *            mappedBy="_student", 
+     *            cascade={"remove", "persist"}
+     *          )
      */
     private $_contacts;
 
@@ -59,7 +63,7 @@ class Student
     {
         $this->_contacts->add($cellphone);
         $cellphone->setStudent($this);
-
+        
         return $this;
     }
 
