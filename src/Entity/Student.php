@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 /**
- * @Entity
+ * @Entity Student
  * 
  */
 class Student
@@ -30,17 +30,22 @@ class Student
     /** 
      * Student's contacts
      * 
-     * @OneToMany(
-     *            targetEntity="Contact", 
-     *            mappedBy="_student", 
-     *            cascade={"remove", "persist"}
-     *          )
+     * @OneToMany(targetEntity="Contact", mappedBy="_student", 
+     *            cascade={"remove", "persist"})
      */
     private $_contacts;
+    
+    /** 
+     * Student's contacts
+     * 
+     * @ManyToMany(targetEntity="Course", mappedBy="_students")
+     */
+    private $_courses;
 
     public function __construct()
     {
         $this->_contacts = new ArrayCollection();
+        $this->_courses = new ArrayCollection();
     }
 
     public function getId(): int
@@ -70,6 +75,22 @@ class Student
     public function getContact(): Collection
     {
         return $this->_contacts;
+    }
+
+    public function addCourse(Course $course): self
+    {
+        if ($this->_courses->contains($course)) {
+            return $this;
+        }
+        
+        $this->_courses->add($course);
+        $course->addStudent($this);
+        return $this;
+    }
+
+    public function getCourses(): Collection
+    {
+        return $this->_courses;
     }
 
 }
