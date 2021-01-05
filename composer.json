@@ -1,4 +1,14 @@
 {
+    "name": "yassuke/doc-cli",
+    "description": "Simple Doctrine CLI APP",
+    "authors": [
+        {
+            "name": "Thiago Martins AKA yassuke",
+            "email": "thiagom.devsec@gmail.com",
+            "homepage": "https://github.com/yassuke"
+        }
+    ],
+    "license": "MIT",
     "require": {
         "doctrine/orm": "^2.6.2",
         "symfony/yaml": "2.*",
