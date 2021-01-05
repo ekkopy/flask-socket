@@ -88,6 +88,9 @@ class Student
         return $this;
     }
 
+    /**
+     * @return Course[]
+     */
     public function getCourses(): Collection
     {
         return $this->_courses;
