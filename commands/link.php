@@ -1,10 +1,5 @@
 <?php
 
-/**
- * 
- * 
- * 
- */
 use Src\Entity\Student;
 use Src\Entity\Course;
 use Src\Helper\EntityManagerFactory;
