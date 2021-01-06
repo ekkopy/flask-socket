@@ -31,7 +31,7 @@ class Student
      * Student's contacts
      * 
      * @OneToMany(targetEntity="Contact", mappedBy="_student", 
-     *            cascade={"remove", "persist"})
+     *            cascade={"remove", "persist"}, fetch="EAGER")
      */
     private $_contacts;
     
