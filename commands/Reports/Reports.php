@@ -14,20 +14,12 @@ $studentsRepository = $entityManager->getRepository(Student::class);
 $debugStack = new DebugStack();
 $entityManager->getConfiguration()->setSQLLogger($debugStack);
 
-$studentClass = Student::class;
-$dql = "SELECT s, con, cour 
-    FROM $studentClass s 
-    JOIN student._contacts con 
-    JOIN student._courses cour";
-
-$query = $entityManager->createQuery($dql);
-
 /**
  *  Return a collection of students
  * 
  * @var Student[] $students
  */
-$students = $query->getResult();
+$students = $studentsRepository->searchCoursesStudent();
 
 foreach ($students as $student) {
 
