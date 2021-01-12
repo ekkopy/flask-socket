@@ -3,20 +3,26 @@
 namespace Src\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use Src\Entity\Student;
 
 class StudentRepository extends EntityRepository
 {
     public function searchCoursesStudent(): array
     {
-        $studentClass = Student::class;
-        $entityManager = $this->getEntityManager();
-        $dql =   "SELECT students, contacts, courses 
-            FROM $studentClass students 
-            JOIN students._contacts contacts 
-            JOIN students._courses courses"; 
-        $query = $entityManager->createQuery($dql);
+        $query = $this->createQueryBuilder('students')
+            ->join('students._contacts', 'contacts')
+            ->join('students._courses', 'courses')
+            ->addSelect('contacts')
+            ->addSelect('courses')
+            ->getQuery();
 
         return $query->getResult();
+    }
+
+    public function getStudentsTotal(): string
+    {
+        return $this->createQueryBuilder('students')
+            ->select('count(students)')
+            ->getQuery()
+            ->getSingleScalarResult();
     }
 }
