@@ -14,14 +14,14 @@ class EntityManagerFactory
      */
     public function getEntityManager(): EntityManagerInterface
     {
-        $rootDir = __DIR__ . '/../..';
+        $rootDir = __DIR__ . '/../../';
         $settings = Setup::createAnnotationMetadataConfiguration(
-            [$rootDir . '/src'],
+            [$rootDir . 'src'],
             true
         );
         $connection = [
             'driver' => 'pdo_sqlite',
-            'path' => $rootDir . '/var/data/database.sqlite'
+            'path' => $rootDir . 'database.sqlite'
         ];
 
         return EntityManager::create($connection, $settings);
